@@ -9,11 +9,12 @@ class Terminalmarket < Formula
 
   def install
     system "npm", "install", *std_npm_args
-    bin.install_symlink libexec.glob("bin/*")
+    bin.install_symlink libexec/"bin/tm"
   end
 
   test do
+    system bin/"tm", "where", "Budva"
     output = shell_output("#{bin}/tm help")
-    assert_match(/TerminalMarket/i, output)
+    assert_match(/Quick Start/i, output)
   end
 end
